@@ -1,7 +1,7 @@
 name: 'Commerce Recurring Test'
 type: module
-description: 'Test module for RetryTest.'
+description: 'Test module for Commerce Recurring.'
 package: Testing
-core: 8.x
+core_version_requirement: ^8.8 || ^9
 dependencies:
   - commerce_recurring:commerce_recurring

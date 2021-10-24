@@ -83,7 +83,8 @@ class RecurringOrderManagerTest extends RecurringKernelTestBase {
    * @covers ::startTrial
    */
   public function testStartTrialWithInvalidState() {
-    $this->setExpectedException(\InvalidArgumentException::class, 'Unexpected subscription state "active".');
+    $this->expectException(\InvalidArgumentException::class);
+    $this->expectExceptionMessage('Unexpected subscription state "active".');
     $order = $this->recurringOrderManager->startTrial($this->activeSubscription);
   }
 
@@ -96,7 +97,8 @@ class RecurringOrderManagerTest extends RecurringKernelTestBase {
     $this->billingSchedule->setPluginConfiguration($configuration);
     $this->billingSchedule->save();
 
-    $this->setExpectedException(\InvalidArgumentException::class, 'The billing schedule "test_id" does not allow trials.');
+    $this->expectException(\InvalidArgumentException::class);
+    $this->expectExceptionMessage('The billing schedule "test_id" does not allow trials.');
     $order = $this->recurringOrderManager->startTrial($this->trialSubscription);
   }
 
@@ -174,7 +176,8 @@ class RecurringOrderManagerTest extends RecurringKernelTestBase {
    * @covers ::startRecurring
    */
   public function testStartRecurringWithInvalidState() {
-    $this->setExpectedException(\InvalidArgumentException::class, 'Unexpected subscription state "trial".');
+    $this->expectException(\InvalidArgumentException::class);
+    $this->expectExceptionMessage('Unexpected subscription state "trial".');
     $order = $this->recurringOrderManager->startRecurring($this->trialSubscription);
   }
 
@@ -301,7 +304,8 @@ class RecurringOrderManagerTest extends RecurringKernelTestBase {
     $this->activeSubscription->save();
     $order = $this->recurringOrderManager->startRecurring($this->activeSubscription);
 
-    $this->setExpectedException(HardDeclineException::class, 'Payment method not found.');
+    $this->expectException(HardDeclineException::class);
+    $this->expectExceptionMessage('Payment method not found.');
     $this->recurringOrderManager->closeOrder($order);
   }
 
